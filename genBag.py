@@ -26,7 +26,8 @@ def main(argv):
          articles = ijson.items(f, 'item')
          count = 0
          for article in articles:
-            print count
+            if(count % 100 == 0):
+               print count
             if(count >= numArticles):
                break
             text = article['abstractText']
