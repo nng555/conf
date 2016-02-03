@@ -18,8 +18,18 @@ def main(argv):
         finalCol = []
         finalData = []
         for article in articles:
-            if i%1000 == 0:
+            if i%10000 == 0:
                 print i
+            if (i+1)%250000 == 0:
+                print "dumping"
+                output = coo_matrix((finalData, (finalRow, finalCol)),
+                        shape = (250000, 100000))
+                with open('bagMat' + str((i+1)/250000) + '.pkl', 'wb') as fp:
+                    cPickle.dump(output, fp, -1)
+                finalData = []
+                finalRow = []
+                finalCol = []
+                gc.collect()
             row = []
             col = []
             data = []
@@ -33,17 +43,13 @@ def main(argv):
                         freqDict[vocabDict[token]] = 0
                     freqDict[vocabDict[token]] = freqDict[vocabDict[token]] + 1
             for key, value in freqDict.iteritems():
-                row.append(i)
+                row.append(i%250000)
                 col.append(key)
                 data.append(value)
             finalRow.extend(row)
             finalCol.extend(col)
             finalData.extend(data)
             i += 1
-    output = csr_matrix((finalData, (finalRow, finalCol)), shape = (2000000, 100000))
-    with open('labelMat.pkl', 'wb') as fp:
-        cPickle.dump(output, fp, -1)
-
 
 if __name__ == "__main__":
     main(sys.argv[1:])
