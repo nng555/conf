@@ -28,9 +28,11 @@ def main(argv):
             finalRow.extend(row)
             finalCol.extend(col)
             i += 1
+            if (i+1)%250000 == 0:
+               break;
     freq = np.ones(len(finalRow))
-    output = csr_matrix((freq, (finalRow, finalCol)), shape = (2000000, 1000))
-    with open('labelMat.pkl', 'wb') as fp:
+    output = csr_matrix((freq, (finalRow, finalCol)), shape = (250000, 1000))
+    with open('labelMat250k.pkl', 'wb') as fp:
         cPickle.dump(output, fp, -1)
 
 

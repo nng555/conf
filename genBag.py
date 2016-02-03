@@ -4,6 +4,7 @@ import numpy as np
 from scipy.sparse import csr_matrix, vstack, coo_matrix
 import cPickle
 from spacy.en import English
+import gc
 
 def main(argv):
     vocabDict = {}
