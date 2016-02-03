@@ -7,8 +7,7 @@ import cProfile
 
 
 def test():
-    nlp = English()
-    #nlp = English(parser=False, tagger=False, entity=False)
+    nlp = English(parser=False, tagger=False, entity=False)
 
     with open('stopwords.txt') as f:
        lines = f.readlines()
