@@ -17,7 +17,7 @@ def test():
         line = line.strip('\n')
         stopWords[line] = 1
     vocab = {}
-    with open('500kdumpR.json') as f:
+    with open('2mdumpR.json') as f:
         data = ijson.items(f, 'item')
         #data = json.load(f)
         i = 0
@@ -33,7 +33,7 @@ def test():
                         vocab[token] = 0
                     vocab[token] += 1
             i += 1
-    with open('500kVocab.json', 'w') as fp:
+    with open('2mVocab.json', 'w') as fp:
         json.dump(vocab, fp)
 
 
