@@ -34,10 +34,14 @@ logreg.fit(data, target)
 result = logreg.predict(valid)
 
 count = 0
-for i in range(0, len(validLabels)):
+length = len(validLabels)
+for i in range(0, length):
     if(result[i] != validLabels[i]):
         count += 1
 
-print(count + " errors in " + len(valid) + " examples.")
+ratio = count / length
 
+print("%d errors in %d examples. Overall error is %d") % (count, length, ratio)
 
+with open('skLogReg.pkl', 'wb') as fp:
+    pickle.dump(logreg, fp, -1)
