@@ -8,29 +8,29 @@ def sigm(w, x):
 
 def loss(w, data, target):
    sum = 0
-   for i in range(100):
+   for i in range(10000):
       sum += -target[i]*math.log(sigm(w, data[i])) - (1-target[i])*math.log(1 - sigm(w, data[i]))
-   return sum/100
+   return sum/10000
 
 def update(w, data, target):
    sum = np.zeros((101,1))
-   for i in range(100):
+   for i in range(10000):
       sum += (sigm(weight, data[i]) - target[i]).item(0) * data[i].transpose()
-   sum /= 100
+   sum /= 10000
    return w - 0.1*sum.transpose()
 
 if __name__ == '__main__':
    data = pickle.load(open("trainMat.pkl", 'rb'))
    target = pickle.load(open("trainLabelMat.pkl", 'rb'))
-   testData = data[100:1100,:100].todense()
-   testTarget = target[100:1100,:1].todense()
-   data = data[:100,:100].todense()
-   target = target[:100,:1].todense()
-   data = np.hstack((data, np.ones((100,1))))
+   testData = data[10000:11000,:100].todense()
+   testTarget = target[10000:11000,:1].todense()
+   data = data[:10000,:100].todense()
+   target = target[:10000,:1].todense()
+   data = np.hstack((data, np.ones((10000,1))))
    testData = np.hstack((testData, np.ones((1000,1))))
    weight = np.zeros(101)
    cost = loss(weight, data, target).item(0)
-   while(abs(cost) > 0.15):
+   for i in range(100):
       print cost
       weight = update(weight, data, target)
       cost = loss(weight, data, target).item(0)
