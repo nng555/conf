@@ -6,6 +6,8 @@ source ~/.vim_runtime/vimrcs/plugins_config.vim
 source ~/.vim_runtime/vimrcs/extended.vim
 
 set relativenumber
+set number
+set mouse += a
 map ,n :NERDTreeToggle<CR>
 
 try
