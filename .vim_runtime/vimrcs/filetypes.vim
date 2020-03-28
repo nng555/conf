@@ -20,8 +20,8 @@ au FileType python map <buffer> <leader>D ?def
 au FileType python set cindent
 au FileType python set cinkeys-=0#
 au FileType python set indentkeys-=0#
-au FileType python set shiftwidth=3
-au Filetype python set tabstop=3
+au FileType python set shiftwidth=4
+au Filetype python set tabstop=4
 
 
 """"""""""""""""""""""""""""""
@@ -47,6 +47,13 @@ function! JavaScriptFold()
     endfunction
     setl foldtext=FoldText()
 endfunction
+
+
+""""""""""""""""""""""""""""""
+" => yaml section
+"""""""""""""""""""""""""""""""
+"au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+"autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 
 """"""""""""""""""""""""""""""

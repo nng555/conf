@@ -2,6 +2,12 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+export PATH=/pkgs/cuda-9.2/bin:/pkgs/nccl_2.3.5-2+cuda9.2_x86_64/lib:/h/nng/programs/julia-1.3.1:/h/nng/programs/julia-1.3.1/bin:/scratch/ssd001/home/nng/.local/lib/python3.6/site-packages:/h/nng/programs/bin:$PATH
+
+export LD_LIBRARY_PATH=/pkgs/nccl_2.3.5-2+cuda9.2_x86_64/lib:$LD_LIBRARY_PATH
+
+set -o vi
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -92,6 +98,25 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias lh='ls -lah'
 alias l='ls -CF'
+alias sq="squeue -u nng --format='%.8F %.6P %.30j %.2t %.10M %.6D %.15N %.6b'"
+
+scseq () { for i in $(seq $1 $2); do scancel $i; done }
+
+ssbatch () { 
+  while [ $(squeue -u $USER | grep R | wc -l) -gt $1 ]
+  do 
+    echo "waiting..."
+    sleep 60
+  done
+  sbatch $2 
+}
+
+venv () {
+  . /scratch/ssd001/home/nng/venv/$1/bin/activate
+}
+
+# vector directory aliases
+hdd=/scratch/hdd001/home/nng
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
