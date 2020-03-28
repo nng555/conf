@@ -66,7 +66,7 @@ pytesseract==0.1.6
 python-dateutil==2.5.3
 pytz==2016.7
 PyWavelets==0.5.2
-PyYAML==3.12
+PyYAML==5.1
 pyzmq==16.0.2
 qtconsole==4.2.1
 requests==2.13.0
