@@ -18,7 +18,7 @@ h5py==2.5.0
 html5lib==0.9999999
 ijson==2.3
 ipykernel==4.5.2
-ipython==5.1.0
+ipython==8.10.0
 ipython-genutils==0.1.0
 ipywidgets==5.2.2
 Jinja2==2.8
